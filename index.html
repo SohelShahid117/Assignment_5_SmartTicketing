@@ -13,15 +13,16 @@
 
 <section class="upper-part">
         <!-- navbar start -->
-    <div class="navbar bg-base-100">
+    <div class="navbar bg-base-100 w-[80%] items-center justify-center mx-auto">
         <div class="navbar-start">
           <div class="dropdown">
             <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+              <!-- <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg> -->
+              <!-- <img src="./imgs/bnr.png" alt="" srcset=""> -->
             </div>
             <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
               <li><a>Item 1</a></li>
-              <li><a>Item 1</a></li>
+              <li><a>Item 2</a></li>
               <li><a>Item 3</a></li>
             </ul>
           </div>
@@ -46,12 +47,12 @@
 
 
     <!-- hero start -->
-    <div class="hero min-h-screen" style="background-image: url(https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg);">
-        <div class="hero-overlay bg-opacity-60"></div>
-        <div class="hero-content text-center text-neutral-content">
+    <div class="hero min-h-screen w-[80%] items-center justify-center mx-auto rounded-3xl" style="background-image: url(./imgs/bnr.png);">
+        <div class="hero-overlay bg-opacity-5"></div>
+        <div class="hero-content text-center text-white">
           <div class="max-w-md">
             <h1 class="mb-5 text-4xl font-bold">End-to-End Travel with </h1>
-            <h1 class="mb-5 text-4xl font-bold">P Paribahan</h1>
+            <h1 class="mb-5 text-4xl font-bold text-lime-500">P Paribahan</h1>
             <p class="mb-5">Yes, you can run unit tests and view the results directly within the app. The
               integrated testing features allow for a streamlined .</p>
             <button class="btn btn-primary">Buy Tickets</button>
@@ -122,7 +123,7 @@
             <div>
               <button class="btn">
                 <img src="./imgs/seatGreen.png" alt="" srcset="">
-                <span>8</span>
+                <span id="seat-lfet">8</span>
                 <p>Seats left</p>
               </button>
             </div>
@@ -213,7 +214,7 @@
         <div>
           <div class="bg-gray-100">
             <div class="border-dashed border-b-2 flex gap-5">
-              <h5>Seat <span>0</span></h5>
+              <h5>Seat <span id="select-seat">0</span></h5>
               <h5>Class</h5>
               <h5>Price</h5>
             </div>
@@ -225,7 +226,7 @@
             <div class="flex items-center">
               <p>Total Price</p>
               <p></p>
-              <p>BDT <span>0</span></p>
+              <p>BDT <span id="total-price">0</span></p>
             </div>
             <div class="bg-white">
               <input type="text" name="" id="" placeholder="Have any copupon?">
@@ -234,7 +235,7 @@
             <div class="flex items-center">
               <p>Grand Total</p>
               <p></p>
-              <p>BDT <span>0</span></p>
+              <p>BDT <span id="grand-total-price">0</span></p>
             </div>
           </div>
           <button class="w-full bg-green-400">Next</button>
