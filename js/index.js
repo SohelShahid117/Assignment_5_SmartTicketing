@@ -1,48 +1,52 @@
-function convertedValue(id){
+// alert('hi');
+
+function getConvertedValue(id){
     const textValue = document.getElementById(id).innerText;
-    const textNumber = parseInt(textValue);
-    return textNumber; 
+    const convertedTextValue = parseInt(textValue);
+    return convertedTextValue;
 }
+const convertedSeatLeft =  getConvertedValue('seat-left');
+// console.log(convertedSeatLeft);
 
-const seatLfet = convertedValue("seat-left");
-console.log(seatLfet);
+const convertSelectSeatCount =  getConvertedValue('select-seat');
+// console.log(convertSelectSeatCount);
 
-const selectSeat  = convertedValue("select-seat");
-console.log(selectSeat);
+const convertedTicketUnitPrice =  getConvertedValue('ticket-unit-price');
+// console.log(convertedTicketUnitPrice);
 
-const totalPrice = convertedValue('total-price');
-console.log(totalPrice);
 
-const grandTotalPrice = convertedValue('grand-total-price');
-console.log(grandTotalPrice);
+const allSeatBtn = document.getElementsByClassName('all-seat-btn');
+// console.log(allSeatBtn)
 
-const allSeatBtn=document.getElementsByClassName('all-seat-btn');
-console.log(allSeatBtn);
-
-for(let seatBtn of allSeatBtn){
-    // console.log(seatBtn);
-    // console.log(seatBtn.innerText);
-    seatBtn.addEventListener('click',function(event){
-        // console.log(event);
-        // console.log(event.target);
-        // console.log(event.target.innerText);
-        event.target.classList.add('bg-lime-300')
+for(const btn of allSeatBtn){
+    // console.log(btn);
+    btn.addEventListener('click',function(event){
+        // console.log(event)
+        // console.log(event.target)
         const seatName = event.target.innerText;
-        console.log(seatName);
 
+        // console.log(seatName)
+        // console.log(event.target.parentNode)
+        // console.log(event.target.parentNode.parentNode)
+        // console.log(event.target.parentNode.parentNode.parentNode)
+        // console.log(event.target.parentNode.parentNode.parentNode.childNodes)
+        // console.log(event.target.parentNode.parentNode.parentNode.childNodes[1].innerText)
+        // console.log(event.target.parentNode.parentNode.parentNode.childNodes[3].innerText)
+        // const convertedTicketUnitPrice =  getConvertedValue('ticket-unit-price');
+        // console.log(convertedTicketUnitPrice);
+        // console.log(seat,convertedTicketUnitPrice);
+        
         const seatDetails = document.getElementById('seat-details');
-        const div = document.createElement('div');
 
+        const div = document.createElement('div');
         const p1 = document.createElement('p');
         const p2 = document.createElement('p');
         const span = document.createElement('span');
+
         p1.innerText = seatName;
         p2.innerText = 'Economy';
-        span.innerText = 550;
-        // seatDetails.appendChild(p1);
-        // seatDetails.appendChild(p2);
-        // seatDetails.appendChild(p3);
-        // seatDetails.classList.add('flex-col');
+        span.innerText = convertedTicketUnitPrice;
+        // console.log(typeof convertedTicketUnitPrice)
 
         div.appendChild(p1);
         div.appendChild(p2);
@@ -50,39 +54,78 @@ for(let seatBtn of allSeatBtn){
 
         div.classList.add('flex');
         div.classList.add('space-x-10');
-        // div.classList.add('flex-col');
+
         seatDetails.appendChild(div);
         seatDetails.classList.add('flex-col');
-        const childNodeeePriceText = seatDetails.childNodes[3].childNodes[2].innerText;
-        // console.log(childNodeee);
-        const childNodeeePriceNmbr = parseInt(childNodeeePriceText );
-        // console.log(childNodeeePriceNmbr,typeof childNodeeePriceNmbr);
+        updateTotalCost(convertedTicketUnitPrice);
+        updateGrandTotal();
 
-        let updateTotalCostNmbr =  updateTotalCost('total-price');
+        // event.target.classList.add('bg-red-600');
+        event.target.classList.add('btn-disabled');
 
-        let sum = updateTotalCostNmbr + childNodeeePriceNmbr;
-        document.getElementById('total-price').innerText = sum;
-        document.getElementById('grand-total-price').innerText = sum;
+        let seatLeft = getConvertedValue('seat-left');
+        document.getElementById('seat-left').innerText = seatLeft-1
+
+        let selectSeat = getConvertedValue('select-seat');
+        document.getElementById('select-seat').innerText = selectSeat+1;
+
+        let y = selectSeat + 1;
+        if(y>=1 && y<4){
+            console.log(event.target)
+            event.target.classList.remove('btn-success');
+            event.target.classList.add('btn-primary');
+            event.target.classList.add('btn-disabled');
+        }
+        else if(y>=4){
+            alert('limit shesh r select korien na');
+            // event.target.classList.add("cursor-not-allowed");
+            event.target.parentNode.parentNode.parentNode.classList.add('btn-disabled');
+            const nextBtn = document.getElementById('next-btn');
+            console.log(nextBtn);
+            nextBtn.classList.add('btn-disabled')
+            nextBtn.classList.remove('bg-green-400');
+            nextBtn.classList.add('bg-gray-400');
+            return;
+        }
+       
     })
 }
 
-function updateTotalCost(id){
-    const totalPrice = convertedValue(id);
-    return totalPrice
-    // console.log(totalPrice);
-    // const totalPrice = document.getElementById('total-price').innerText;
-    // const totalPriceNmbr = parseInt(totalPrice);
-    // return totalPriceNmbr;
-    // // let sum = totalPriceNmbr + childNodeeePriceNmbr;
-    // document.getElementById('total-price').innerText = sum;
-    // // console.log(totalPrice);
+function updateTotalCost(ticketValue){
+    let totalPrice = getConvertedValue('total-price');
+    // console.log(typeof totalPrice,totalPrice)
+    let sum = totalPrice + ticketValue;
+    // console.log(sum);
+    document.getElementById('total-price').innerText = sum;
 }
 
-function updateGrandTotal(){
-    const grandTotalPrice = convertedValue('grand-total-price');
-    const disCountPrice = updateTotalCost() - 100* 0.2;
-    const sum =updateTotalCost() - disCountPrice;
-    document.getElementById('grand-total-price').innerText = sum;
-}
-updateGrandTotal();
+function updateGrandTotal(callFromAplyBTn){
+    // console.log(fromAplyBTn);
+    /*
+    if(callFromAplyBTn){
+        console.log('call from apply-btn')
+    }else{
+        console.log('call from seat-btn')
+    }
+    */
 
+    if(callFromAplyBTn){
+        const couponCode = document.getElementById('coupon-code').value;
+        // console.log(couponCode);
+        if(couponCode==='NEW50'){
+            let totalPrice = getConvertedValue('total-price')*0.8; //20%discount
+            document.getElementById('grand-total-price').innerText = totalPrice;
+            const couponCode = document.getElementById('coupon-code');
+            console.log(couponCode.parentNode);
+            couponCode.parentNode.classList.add('invisible');
+        }else{
+            alert('Pls enter valid coupon code')
+            couponCode.parentNode.classList.remove('invisible');
+        }
+    }
+    else{
+        let totalPrice = getConvertedValue('total-price');
+        document.getElementById('grand-total-price').innerText = totalPrice;
+    }
+
+}

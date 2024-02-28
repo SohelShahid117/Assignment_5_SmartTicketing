@@ -153,7 +153,7 @@
         <span>
           <img src="./imgs/fareee.png" alt="">
         </span>
-        <h1>550 Taka</h1>
+        <h1><span id="ticket-unit-price">550</span> Taka</h1>
         <b>Per Seat</b>
       </div>
     </div>
@@ -228,8 +228,8 @@
               <p>BDT <span id="total-price">0</span></p>
             </div>
             <div class="bg-white">
-              <input type="text" name="" id="" placeholder="Have any copupon?">
-              <button class="btn btn-success">Apply</button>
+              <input type="text" name="" id="coupon-code" placeholder="Have any coupon?">
+              <button onclick="updateGrandTotal('apply-btn')" class="btn btn-success">Apply</button>
             </div>
             <div class="flex items-center">
               <p>Grand Total</p>
@@ -237,7 +237,7 @@
               <p>BDT <span id="grand-total-price">0</span></p>
             </div>
           </div>
-          <button class="w-full bg-green-400">Next</button>
+          <button id="next-btn" class="w-full bg-green-400">Next</button>
           </div>
         </div>
     </div>
@@ -267,5 +267,6 @@
 
     
 <script src="./js/index.js"></script>
+<!-- <script src="./a-5.js"></script> -->
 </body>
 </html>
